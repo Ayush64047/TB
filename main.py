@@ -33,3 +33,32 @@ def download_quality(update: Update, context: CallbackContext) -> None:
         query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
     # Clears the user's context
     context.user_data.clear()
+    
+
+# Initializes the Telegram bot with the provided API token
+updater = Updater("YOUR_API_TOKEN_HERE", use_context=True)
+
+# Defines the start command handler
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text("Send me a Terabox download link and I'll download it for you!")
+
+# Defines the message handler for downloading the Terabox file
+def download_file(update: Update, context: CallbackContext) -> None:
+    # Saves the Terabox download link to the user's context
+    context.user_data['link'] = update.message.text
+    # Creates a keyboard for selecting the download quality
+    keyboard = [
+        [InlineKeyboardButton("Original", callback_data="original")],
+        [InlineKeyboardButton("720p", callback_data="720p"), InlineKeyboardButton("480p", callback_data="480p")],
+        [InlineKeyboardButton("360p", callback_data="360p"), InlineKeyboardButton("240p", callback_data="240p")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    # Sends the keyboard to the user and waits for their input
+    update.message.reply_text("Select a download quality:", reply_markup=reply_markup)
+
+# Defines the callback query handler for the download quality buttons
+updater.dispatcher.add_handler(CallbackQueryHandler(download_quality))
+
+# Defines the start and message handlers
+updater.dispatcher.add_handler(CommandHandler("start", start))
+updater
