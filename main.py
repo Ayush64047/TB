@@ -1,8 +1,7 @@
 import os
 import requests
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
-from config import TERABOX_EMAIL, TERABOX_PASSWORD, TOKEN
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 
 # Handles the "/start" command
 def start(update: Update, context: CallbackContext) -> None:
@@ -42,6 +41,9 @@ def download_quality(update: Update, context: CallbackContext) -> None:
     query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
     # Clears the user's context
     context.user_data.clear()
+
+# Define the Telegram bot token
+TOKEN = "YOUR_BOT_TOKEN"
 
 # Creates the bot and adds the necessary handlers
 updater = Updater(TOKEN, use_context=True)
