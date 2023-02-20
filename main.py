@@ -4,7 +4,7 @@ import mimetypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 
-TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+TELEGRAM_TOKEN = os.environ['5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU']
 
 # Handles the download quality button presses
 def download_quality(update: Update, context: CallbackContext) -> None:
