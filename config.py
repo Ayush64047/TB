@@ -3,6 +3,7 @@
 # Telegram bot token
 TELEGRAM_TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
 
-# Terabox login credentials
-TERABOX_USERNAME = "YOUR_TERABOX_USERNAME"
-TERABOX_PASSWORD = "YOUR_TERABOX_PASSWORD"
+#terabox
+TERABOX_EMAIL = "dudupudu2@gmail.com"
+TERABOX_PASSWORD = "Asdfggjkl@1"
+
