@@ -6,7 +6,7 @@ This is a Telegram bot that can download media files from Terabox links. The bot
 
 To run the bot, you will need to do the following:
 
-1. Clone this repository: `git clone https://github.com/your-username/telegram-terabox-bot.git`
+1. Clone this repository: `git clone https://github.com/Shinigamibots5/Terabox-download-bot`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Create a `config.py` file with your Telegram bot token and Terabox login credentials.
 4. Run the bot: `python main.py`
