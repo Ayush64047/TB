@@ -4,7 +4,13 @@ import mimetypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 
-TELEGRAM_TOKEN = os.environ['5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU']
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TELEGRAM_TOKEN = os.environ('5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU")
+TERABOX_EMAIL = os.getenv("dudupudu2@gmail.com")
+TERABOX_PASSWORD = os.getenv("Asdfggjkl@1")
 
 # Handles the download quality button presses
 def download_quality(update: Update, context: CallbackContext) -> None:
