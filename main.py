@@ -43,7 +43,7 @@ def download_quality(update: Update, context: CallbackContext) -> None:
     context.user_data.clear()
 
 # Define the Telegram bot token
-TOKEN = "YOUR_BOT_TOKEN"
+TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
 
 # Creates the bot and adds the necessary handlers
 updater = Updater(TOKEN, use_context=True)
