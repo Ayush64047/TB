@@ -36,7 +36,7 @@ def download_quality(update: Update, context: CallbackContext) -> None:
     
 
 # Initializes the Telegram bot with the provided API token
-updater = Updater("YOUR_API_TOKEN_HERE", use_context=True)
+updater = Updater("5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU", use_context=True)
 
 # Defines the start command handler
 def start(update: Update, context: CallbackContext) -> None:
