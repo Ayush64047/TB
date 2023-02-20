@@ -2,7 +2,9 @@ import os
 import requests
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
-from config import TOKEN
+from config import TOKEN, TERABOX_USERNAME, TERABOX_PASSWORD
+
+# Your code goes here
 
 # Replace YOUR_TOKEN with your actual bot token
 TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
