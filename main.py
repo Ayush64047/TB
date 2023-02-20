@@ -5,7 +5,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 from config import TOKEN
 
 # Replace YOUR_TOKEN with your actual bot token
-TOKEN = "YOUR_TOKEN"
+TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
 bot_url = f"https://api.telegram.org/bot{TOKEN}/"
 
 # Handles the "/start" command
