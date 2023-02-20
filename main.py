@@ -2,7 +2,7 @@ import os
 import requests
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
-from config import TERABOX_USERNAME, TERABOX_PASSWORD, TOKEN
+from config import TERABOX_EMAIL, TERABOX_PASSWORD, TOKEN
 
 # Handles the "/start" command
 def start(update: Update, context: CallbackContext) -> None:
