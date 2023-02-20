@@ -4,6 +4,8 @@ import mimetypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 
+TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+
 # Handles the download quality button presses
 def download_quality(update: Update, context: CallbackContext) -> None:
     # Extracts the callback data (i.e. the download quality) from the button press
@@ -33,32 +35,38 @@ def download_quality(update: Update, context: CallbackContext) -> None:
         query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
     # Clears the user's context
     context.user_data.clear()
-    
 
-# Initializes the Telegram bot with the provided API token
-updater = Updater("5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU", use_context=True)
-
-# Defines the start command handler
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text("Send me a Terabox download link and I'll download it for you!")
+    update.message.reply_text('Welcome to the Terabox downloader bot! Send me a link and I will download it for you.')
 
-# Defines the message handler for downloading the Terabox file
-def download_file(update: Update, context: CallbackContext) -> None:
-    # Saves the Terabox download link to the user's context
+def handle_link(update: Update, context: CallbackContext) -> None:
+    # Save the link in the user's context for later use
     context.user_data['link'] = update.message.text
-    # Creates a keyboard for selecting the download quality
-    keyboard = [
+    # Create the download quality button options
+    buttons = [
         [InlineKeyboardButton("Original", callback_data="original")],
-        [InlineKeyboardButton("720p", callback_data="720p"), InlineKeyboardButton("480p", callback_data="480p")],
-        [InlineKeyboardButton("360p", callback_data="360p"), InlineKeyboardButton("240p", callback_data="240p")]
+        [InlineKeyboardButton("480p", callback_data="480"), InlineKeyboardButton("720p", callback_data="720"), InlineKeyboardButton("1080p", callback_data="1080")],
     ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    # Sends the keyboard to the user and waits for their input
-    update.message.reply_text("Select a download quality:", reply_markup=reply_markup)
+    # Sends the download quality options to the user
+    update.message.reply_text("Choose a download quality:", reply_markup=InlineKeyboardMarkup(buttons))
 
-# Defines the callback query handler for the download quality buttons
-updater.dispatcher.add_handler(CallbackQueryHandler(download_quality))
+def main() -> None:
+    # Create the Updater and pass it the bot's token
+    updater = Updater(TELEGRAM_TOKEN, use_context=True)
 
-# Defines the start and message handlers
-updater.dispatcher.add_handler(CommandHandler("start", start))
-updater
+    # Get the dispatcher to register handlers
+    dispatcher = updater.dispatcher
+
+    # Add command handlers
+    dispatcher.add_handler(CommandHandler("start", start))
+    
+    # Add message handler for handling links
+    dispatcher.add_handler(MessageHandler(Filters.regex(r'^https?://'), handle_link))
+
+    # Add callback query handler for handling download quality button presses
+    dispatcher.add_handler(CallbackQueryHandler(download_quality))
+
+    # Start the bot
+    updater.start_polling()
+    updater.idle()
+
