@@ -1,25 +1,8 @@
 import os
 import requests
+import mimetypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
-
-# Handles the "/start" command
-def start(update: Update, context: CallbackContext) -> None:
-    # Sends a welcome message to the user
-    update.message.reply_text("Welcome to the Terabox Link Download Bot! Please send me a Terabox link to get started.")
-
-# Handles messages containing Terabox links
-def terabox_link(update: Update, context: CallbackContext) -> None:
-    # Extracts the Terabox link from the message text
-    link = update.message.text
-    # Sends a message to the user with the download quality options
-    reply_markup = InlineKeyboardMarkup([
-        [InlineKeyboardButton("480p", callback_data="480p"), InlineKeyboardButton("720p", callback_data="720p"), InlineKeyboardButton("1080p", callback_data="1080p")],
-        [InlineKeyboardButton("Original File", callback_data="original")]
-    ])
-    update.message.reply_text("Please select the download quality:", reply_markup=reply_markup)
-    # Stores the Terabox link in the user's context for later use
-    context.user_data['link'] = link
 
 # Handles the download quality button presses
 def download_quality(update: Update, context: CallbackContext) -> None:
@@ -38,19 +21,15 @@ def download_quality(update: Update, context: CallbackContext) -> None:
         file_name = f"{quality}p_{os.path.basename(link)}"
     # Sends the file to the user
     query.edit_message_text("Downloading file...")
-    query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
+    # Set the appropriate content type based on the file type
+    content_type, encoding = mimetypes.guess_type(file_name)
+    if content_type and "video" in content_type:
+        query.bot.send_video(chat_id=query.message.chat_id, video=response.content, filename=file_name)
+    elif content_type and "image" in content_type:
+        query.bot.send_photo(chat_id=query.message.chat_id, photo=response.content, filename=file_name)
+    elif content_type and "application" in content_type:
+        query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
+    else:
+        query.bot.send_document(chat_id=query.message.chat_id, document=response.content, filename=file_name)
     # Clears the user's context
     context.user_data.clear()
-
-# Define the Telegram bot token
-TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
-
-# Creates the bot and adds the necessary handlers
-updater = Updater(TOKEN, use_context=True)
-updater.dispatcher.add_handler(CommandHandler("start", start))
-updater.dispatcher.add_handler(MessageHandler(Filters.regex(r'https?://[^\s]+'), terabox_link))
-updater.dispatcher.add_handler(CallbackQueryHandler(download_quality))
-
-# Starts the bot
-updater.start_polling()
-updater.idle()
