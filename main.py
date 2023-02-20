@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TELEGRAM_TOKEN = os.environ('5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU")
+TELEGRAM_TOKEN = os.environ.get('5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU")
 TERABOX_EMAIL = os.getenv("dudupudu2@gmail.com")
 TERABOX_PASSWORD = os.getenv("Asdfggjkl@1")
 
