@@ -1,1 +1,2 @@
-worker: python main.py
+worker: python main.py && tail -f /dev/null
+
