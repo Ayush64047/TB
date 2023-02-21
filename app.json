@@ -1,8 +1,14 @@
 {
-  "name": "telegram-terabox-bot",
-  "description": "Telegram Terabox link download bot",
-  "repository": "https://github.com/your-username/telegram-terabox-bot",
-  "image": "heroku/python",
+  "name": "Terabox-Download-Bot",
+  "description": "Telegram's Best Smart Plugin File download Bot",
+  "keywords": [
+    "telegram",
+    "best",
+    "file",
+    "Download",
+    "bot"
+  ],
+  "repository": "https://github.com/Greymattersbot/public-forward-bot",
   "env": {
     "TOKEN": {
       "description": "Telegram bot token",
