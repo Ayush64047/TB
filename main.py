@@ -57,22 +57,24 @@ def handle_link(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("Choose a download quality:", reply_markup=InlineKeyboardMarkup(buttons))
 
 def main() -> None:
-    # Create the Updater and pass it the bot's token
-    updater = Updater(TELEGRAM_TOKEN, use_context=True)
+    try:
+        # Create the Updater and pass it the bot's token
+        updater = Updater(TELEGRAM_TOKEN, use_context=True)
 
-    # Get the dispatcher to register handlers
-    dispatcher = updater.dispatcher
+        # Get the dispatcher to register handlers
+        dispatcher = updater.dispatcher
 
-    # Add command handlers
-    dispatcher.add_handler(CommandHandler("start", start))
-    
-    # Add message handler for handling links
-    dispatcher.add_handler(MessageHandler(Filters.regex(r'^https?://'), handle_link))
+        # Add command handlers
+        dispatcher.add_handler(CommandHandler("start", start))
 
-    # Add callback query handler for handling download quality button presses
-    dispatcher.add_handler(CallbackQueryHandler(download_quality))
+        # Add message handler for handling links
+        dispatcher.add_handler(MessageHandler(Filters.regex(r'^https?://'), handle_link))
 
-    # Start the bot
-    updater.start_polling()
-    updater.idle()
+        # Add callback query handler for handling download quality button presses
+        dispatcher.add_handler(CallbackQueryHandler(download_quality))
 
+        # Start the bot
+        updater.start_polling()
+        updater.idle()
+    except Exception as e:
+        print(e)
