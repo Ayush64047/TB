@@ -1,1 +1,1 @@
-worker: command-to-start-worker
+worker: python main.py
