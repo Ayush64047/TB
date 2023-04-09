@@ -1,7 +1,7 @@
 
 
 # Telegram bot token
-TELEGRAM_TOKEN = "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU"
+TELEGRAM_TOKEN = "6087932338:AAHcsTkSETDFdIabOirRDTq-apOiHzNduUA"
 
 #terabox
 TERABOX_EMAIL = "dudupudu2@gmail.com"
