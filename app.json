@@ -16,6 +16,16 @@
       "required": true
     }
   },
+  {
+  "TERABOX_PASSWORD" : {
+    "value" : "Asdfggjkl@1"
+    }
+},
+{
+  "TERABOX_EMAIL" : {
+    "value" :"dudupudu2@gmail.com"
+    }
+  },
   "formation": {
     "worker": {
       "quantity": 1,
