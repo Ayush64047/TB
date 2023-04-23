@@ -20,7 +20,7 @@ To use the bot, simply send it a Terabox link and select the quality that you wa
 If you find a bug or have a feature request, please open an issue in the [issue tracker](https://github.com/your-username/telegram-terabox-bot/issues). Pull requests are also welcome!
 
 ### Deploy to Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Shinigamibots5/terabox-download-)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Ayush64047/TB)
 
 ## License
 
