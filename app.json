@@ -12,7 +12,7 @@
   "env": {
     "TOKEN": {
       "description": "Telegram bot token",
-      "value": "5647123835:AAHN6PUFsVpCFkxYuSdHlX4iW_Wc8Nuo7IU",
+      "value": "6202827967:AAHEjtDDTQAIzkE3ov1-aaEQ-DW8DWqzNIA",
       "required": true
     }
   },
