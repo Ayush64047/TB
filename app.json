@@ -8,7 +8,7 @@
     "Download",
     "bot"
   ],
-  "repository": "https://github.com/Greymattersbot/public-forward-bot",
+  "repository": "https://github.com/Ayush64047/TB",
   "env": {
     "TOKEN": {
       "description": "Telegram bot token",
